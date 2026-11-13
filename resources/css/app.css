@@ -7,3 +7,47 @@
     --font-sans: 'Instrument Sans', ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji',
         'Segoe UI Symbol', 'Noto Color Emoji';
 }
+
+/* ===== Animasi sederhana ===== */
+
+/* Fade in untuk tabel saat halaman dimuat */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+tbody tr {
+    animation: fadeIn 0.4s ease forwards;
+    opacity: 0;
+}
+
+tbody tr:nth-child(1) { animation-delay: 0.1s; }
+tbody tr:nth-child(2) { animation-delay: 0.2s; }
+tbody tr:nth-child(3) { animation-delay: 0.3s; }
+tbody tr:nth-child(4) { animation-delay: 0.4s; }
+tbody tr:nth-child(5) { animation-delay: 0.5s; }
+
+/* Hover klik tombol */
+.btn:active {
+    transform: scale(0.95);
+    transition: transform 0.1s;
+}
+
+/* Focus input form */
+.form-control:focus {
+    box-shadow: 0 0 0 0.2rem rgba(13, 110, 253, 0.25);
+    transition: box-shadow 0.3s;
+}
+
+/* Tombol hapus merah saat hover */
+.btn-danger:hover {
+    background-color: #dc3545;
+    border-color: #dc3545;
+    transition: background-color 0.2s, border-color 0.2s;
+}

@@ -9,7 +9,7 @@ class PegawaiController extends Controller
 {
     public function index()
     {
-        $data = Pegawai::latest()->get();
+        $data = Pegawai::oldest()->get();
         return view('pegawai.index', compact('data'));
     }
 
@@ -20,7 +20,7 @@ class PegawaiController extends Controller
 
     public function store(Request $request)
     {
-        $request->validate([
+        $validated = $request->validate([
             'nip' => 'required|unique:pegawai,nip',
             'nama' => 'required',
             'jabatan' => 'required',
@@ -29,7 +29,7 @@ class PegawaiController extends Controller
             'alamat' => 'nullable',
         ]);
 
-        Pegawai::create($request->validated());
+        Pegawai::create($validated);
 
         return redirect()->route('pegawai.index')->with('success', 'Data pegawai berhasil ditambahkan');
     }
@@ -50,7 +50,7 @@ class PegawaiController extends Controller
     {
         $item = Pegawai::findOrFail($id);
 
-        $request->validate([
+        $validated = $request->validate([
             'nip' => 'required|unique:pegawai,nip,' . $id,
             'nama' => 'required',
             'jabatan' => 'required',
@@ -59,7 +59,7 @@ class PegawaiController extends Controller
             'alamat' => 'nullable',
         ]);
 
-        $item->update($request->validated());
+        $item->update($validated);
 
         return redirect()->route('pegawai.index')->with('success', 'Data pegawai berhasil diubah');
     }
